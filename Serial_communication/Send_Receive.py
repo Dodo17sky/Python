@@ -18,6 +18,7 @@
 
 import serial #get from http://pyserial.sourceforge.net/
 import sys
+import os
 import time
 import threading
 from datetime import datetime
@@ -174,10 +175,13 @@ while(1):
         print "exiting..."
         break
     
+    elif cmd == "clear":
+        os.system("cls")
     else:
         for c in cmd:
             print "Sendind: ", c
             hw.write_HW(c)
+        hw.write_HW('\n')
 
 #tidy up, or you can just Ctrl-C
 hw.kill()
