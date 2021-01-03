@@ -139,8 +139,10 @@ def my_callback(response):
 
 # Need to set the portname for your Arduino serial port:
 # see "Serial Port" entry in the Arduino "Tools" menu
-portname = "COM4"
+portname = "COM3"
 portbaud = "9600"
+
+portname = raw_input(" Enter com port: ")
 
 print " Select baud rate: "
 print "  1: 9600"
@@ -157,7 +159,7 @@ ser = serial.Serial(portname,portbaud,timeout=0)
 print "opened port " + portname + " at " + str(portbaud) +  " baud"
 
 sys.stdout.flush()
-hw = HW_Interface(ser,0.1)
+hw = HW_Interface(ser,0.0001)
 
 #when class gets data from the Arduino, it will call the my_callback function
 hw.register_callback(my_callback)
@@ -179,8 +181,9 @@ while(1):
         os.system("cls")
     else:
         for c in cmd:
-            print "Sendind: ", c
+            #print "Sendind: ", c
             hw.write_HW(c)
+        hw.write_HW('\r')
         hw.write_HW('\n')
 
 #tidy up, or you can just Ctrl-C
