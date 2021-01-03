@@ -22,10 +22,6 @@ import os
 import time
 import threading
 from datetime import datetime
-
-ceva = "altceva"
-var1 = 25
-
 bauds = [ 9600, 57600, 115200 ]
 rxBuffer = "" 
 
